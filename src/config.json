@@ -1,0 +1,9 @@
+{
+    "api_uri" : "https://cors-anywhere.herokuapp.com/https://sandbox-api.coinmarketcap.com/",
+    "api_header" : {
+        "X-CMC_PRO_API_KEY" : "1657952f-cbfb-4a37-86c2-80f11ccaaaa2"
+    },
+    "bases" : "BTC,ETH,XRP,USDT",
+    "convertion" : "USD,IDR,EUR,XPT,XAU,XAG",
+    "additional_info" : "Convertion ids can be obtained from https://coinmarketcap.com/api/documentation/v1/#section/Standards-and-Conventions"
+}
