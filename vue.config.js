@@ -9,5 +9,6 @@ module.exports = {
   },
   transpileDependencies: [
     '@coreui/utils'
-  ]
+  ],
+  publicPath: '/budhiargomiko-sandbox-1'
 }
