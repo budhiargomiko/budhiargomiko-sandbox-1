@@ -1,4 +1,3 @@
-import { thousandSeparator, Bignumber } from './functions';
 <template>
     <div>
         <CRow>

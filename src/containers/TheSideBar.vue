@@ -53,6 +53,10 @@ import { cilFolderOpen } from '@coreui/icons';
                     icon="cilFolderClosed"
                     name="Simple Exchanger"
                     to="SimpleExchanger"
+                />
+                <CSidebarNavItem
+                    name="Animations"
+                    to="Animations"
                 /> 
             </CSidebarNavDropdown>
         </CSidebarNav>
