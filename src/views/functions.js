@@ -35,21 +35,42 @@ function cmcdissectPrice(objects, base){
     return result;
 }
 
- async function coinmarketCapAPIFetcher(base, quote){
-    return axios.get('/v1/cryptocurrency/quotes/latest',{
-        params:{
-            symbol : base,
-            convert : quote
+async function getTableData(){
+    return axios({
+        baseURL: "https://api.mockaroo.com",
+        url: "/api/4ef2d7a0",
+        timeout: 5000,
+        params: {
+            count: 1000,
+            key: '334b8e20'
         }
-    }).then((response) => {
-        let tmp = Object.values(response.data.data);
-        let result = {};
-        let bs = base.split(',');
-        tmp.forEach((cryptoQuotes, index) => {
-            Object.assign(result, cmcdissectPrice(cryptoQuotes, bs[index]));
-        });
-        return result
+    }).then((response) =>{
+        if (response.status >= 200){
+            return response.data
+        }
+    }).catch(function (error) {
+        if (error.code === 'ECONNABORTED') {
+            console.log(error.code);
+            return 'Timeout'
+        }
     });
+}
+
+async function coinmarketCapAPIFetcher(base, quote){
+   return axios.get('/v1/cryptocurrency/quotes/latest',{
+       params:{
+           symbol : base,
+           convert : quote
+       }
+   }).then((response) => {
+       let tmp = Object.values(response.data.data);
+       let result = {};
+       let bs = base.split(',');
+       tmp.forEach((cryptoQuotes, index) => {
+           Object.assign(result, cmcdissectPrice(cryptoQuotes, bs[index]));
+       });
+       return result
+   });
 }
 
 export {
@@ -57,5 +78,6 @@ export {
     thousandSeparator,
     input_numberOnly,
     unformatNumber,
-    coinmarketCapAPIFetcher
+    coinmarketCapAPIFetcher,
+    getTableData
 }

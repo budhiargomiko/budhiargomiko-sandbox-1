@@ -57,6 +57,10 @@ import { cilFolderOpen } from '@coreui/icons';
                 <CSidebarNavItem
                     name="Animations"
                     to="Animations"
+                />
+                <CSidebarNavItem
+                    name="SampleTable"
+                    to="SampleTable"
                 /> 
             </CSidebarNavDropdown>
         </CSidebarNav>

@@ -4,6 +4,7 @@ import Router from 'vue-router'
 const TheContainer = () => import('@/containers/TheContainer')
 const SimpleExchanger = () => import('@/views/SimpleExchanger')
 const Animations = () => import('@/views/Animations')
+const SampleTable = () => import('@/views/SampleTable')
 const Default = () => import('@/views/Default')
 
 Vue.use(Router)
@@ -45,6 +46,11 @@ function configRoutes(){
                             name: 'Animations',
                             component: Animations
                         },
+                        {
+                            path: '/SampleTable',
+                            name: 'SampleTable',
+                            component: SampleTable
+                        }
                     ]
                 },
             ]
