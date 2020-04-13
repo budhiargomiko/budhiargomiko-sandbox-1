@@ -6,6 +6,7 @@ const SimpleExchanger = () => import('@/views/SimpleExchanger')
 const Animations = () => import('@/views/Animations')
 const SampleTable = () => import('@/views/SampleTable')
 const MaterialNav = () => import('@/views/MaterialNav')
+const StackedList = () => import('@/views/StackedList')
 const Default = () => import('@/views/Default')
 
 Vue.use(Router)
@@ -56,6 +57,11 @@ function configRoutes(){
                             path: '/MaterialNav',
                             name: 'MaterialNav',
                             component: MaterialNav
+                        },
+                        {
+                            path: '/StackedList',
+                            name: 'StackedList',
+                            component: StackedList
                         }
                     ]
                 },

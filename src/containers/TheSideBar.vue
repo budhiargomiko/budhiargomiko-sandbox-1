@@ -65,6 +65,10 @@ import { cilFolderOpen } from '@coreui/icons';
                     to="Animations"
                 />
                 <CSidebarNavItem
+                    name="Stacked List"
+                    to="StackedList"
+                />
+                <CSidebarNavItem
                     name="MaterialNav"
                     to="MaterialNav"
                 />
