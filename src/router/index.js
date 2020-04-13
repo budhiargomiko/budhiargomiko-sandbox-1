@@ -5,6 +5,7 @@ const TheContainer = () => import('@/containers/TheContainer')
 const SimpleExchanger = () => import('@/views/SimpleExchanger')
 const Animations = () => import('@/views/Animations')
 const SampleTable = () => import('@/views/SampleTable')
+const MaterialNav = () => import('@/views/MaterialNav')
 const Default = () => import('@/views/Default')
 
 Vue.use(Router)
@@ -20,19 +21,19 @@ function configRoutes(){
         {
             path: '/',
             name: 'Home',
-            redirect: 'default',
+            redirect: 'Default',
             component: TheContainer,
             children: [
                 {
                     path: '/',
-                    redirect: 'default',
+                    redirect: 'Default',
                     name: 'Navigation',
                     component: {
                         render (c) { return c('router-view')}
                     },
                     children: [
                         {
-                            path: '/default',
+                            path: '/Default',
                             name: 'Default',
                             component: Default
                         },
@@ -50,6 +51,11 @@ function configRoutes(){
                             path: '/SampleTable',
                             name: 'SampleTable',
                             component: SampleTable
+                        },
+                        {
+                            path: '/MaterialNav',
+                            name: 'MaterialNav',
+                            component: MaterialNav
                         }
                     ]
                 },

@@ -42,7 +42,7 @@ import { cilFolderOpen } from '@coreui/icons';
                 Sidebar Dropdowns
             </CSidebarNavTitle>
             <CSidebarNavDropdown
-                name="Navigator"
+                name="Basic Things"
             >
                 <CSidebarNavItem
                     icon="cilFolderClosed"
@@ -55,13 +55,19 @@ import { cilFolderOpen } from '@coreui/icons';
                     to="SimpleExchanger"
                 />
                 <CSidebarNavItem
+                    name="Sample Table"
+                    to="SampleTable"
+                /> 
+            </CSidebarNavDropdown>
+            <CSidebarNavDropdown name="CSS Advanced things">
+                <CSidebarNavItem
                     name="Animations"
                     to="Animations"
                 />
                 <CSidebarNavItem
-                    name="SampleTable"
-                    to="SampleTable"
-                /> 
+                    name="MaterialNav"
+                    to="MaterialNav"
+                />
             </CSidebarNavDropdown>
         </CSidebarNav>
     </CSidebar>
