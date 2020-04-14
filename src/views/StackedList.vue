@@ -1,9 +1,10 @@
 <template>
     <CRow>
-        <CCol lg="3">
+        <CCol lg="6" sm="12">
+            <h4>Pure CSS</h4>
             <ul class="sl-wrapper"
                 :style="{
-                    height: (arr.length*3.5)+'rem',
+                    height: (arr.length*4.5)+'rem',
                 }"
             >
                 <li v-for="i in arr" class="sl" :key="i"
@@ -16,6 +17,33 @@
                     <p>The quick brown fox jumps over the lazy dog</p>
                 </li>
             </ul>
+            <h4>Verdict:</h4>
+            <p>The most reliable solution you can get. Instead of directly using height,
+                you can transit max-height property instead which gives you workaround for height:auto properties</p>
+        </CCol>
+        <CCol lg="6" sm="12">
+            <h4>with javascript</h4>
+            <ul class="sl-wrapper"
+                :style="{
+                    height: (arr.length*4.5)+'rem',
+                }"
+            >
+                <li :ref="'list-'+i" v-for="i in arr" class="sl-js" :key="i"
+                    :style="{
+                        zIndex: arr.length*10 - i,
+                        top: -(1.5*i)+'rem'
+                    }"
+                    @mouseenter="vExpand('list-'+i)"
+                    @mouseleave="vCollapse('list-'+i)"
+                >
+                    <a href="javascript:void(0)">List Number #{{i+1}}</a>
+                    <p>The quick brown fox jumps over the lazy dog</p>
+                </li>
+            </ul>
+            <h4>Verdict:</h4>
+            <p>There are some quirkiness with javascript solution, since its response to event isn't
+                as fast as CSS response.
+            </p>
         </CCol>
     </CRow>
 </template>
@@ -25,8 +53,23 @@
         font-size: 1.5rem;
         font-weight: 100;
         padding-left: 0;
-        text-align: center;        
+        text-align: center;
         .sl {
+            max-height: 5rem;
+            transition: max-height 0.5s;
+            &:active, &:hover {
+                transition: max-height 0.5s;
+                max-height:8.8rem;
+            }
+        }
+        .sl-js {
+            height: 5rem;
+            transition: height 0.5s;
+            &:active, &:hover {
+                transition: height 0.5s;
+            }
+        }        
+        .sl, .sl-js {
             cursor: pointer;
             background-color:white;
             position: relative;
@@ -37,9 +80,7 @@
             border-bottom-right-radius: 1.5rem;
             box-shadow: 0px 2px 0.75rem;
             display: flex;
-            height: 5rem;
             flex-direction: column;
-            transition: height 0.5s;
             a {
                 color: #202020;
                 position: relative;
@@ -54,14 +95,6 @@
                 margin: 1rem;
                 font-size: 1rem;
             }
-            &:first-child{
-                padding-top: 1rem;
-                p {
-                    margin-top: 1.8rem;
-                    margin-bottom: 1rem;
-                    font-size: 1rem;
-                }
-            }
             &:hover {
                 background-color: #495399;
                 transition-delay: 25ms;
@@ -70,10 +103,6 @@
                     transition-delay: 25ms;
                 }
             }
-            &:active, &:hover {
-                height:8.8rem;
-                transition: height 0.5s;
-            }
         }
     }
 </style>
@@ -81,8 +110,38 @@
 export default {
     name: 'StackedList',
     data(){
-        return{
-            arr : Array(5).fill().map((i, index) => {return index})
+        return {
+            arr : Array(5).fill().map((i, index) => {return index}),
+            heightData: {}
+        }
+    },
+    methods: {
+        fHover(ref){
+            return this.$refs[ref];
+        },
+        vCollapse(ref){
+            let element = this.$refs[ref][0];
+            let height = element.scrollHeight;
+            let transition = element.style.transition;
+            element.style.transition = '';
+
+            requestAnimationFrame(()=>{
+                element.style.height = height+'px';
+                element.style.transition = transition;
+                requestAnimationFrame(()=>{
+                    element.style.height = this.heightData[ref];
+                });
+            });
+        },
+        vExpand(ref){
+            let element = this.$refs[ref][0];
+            this.heightData[ref] = element.style.height;
+            let height = element.scrollHeight;
+            element.style.height = height + 'px';
+            element.addEventListener('transitionend', function namedFunc(e){
+                element.removeEventListener('transitionend', arguments.callee);
+                element.style.height = null;
+            });
         }
     }
 }
